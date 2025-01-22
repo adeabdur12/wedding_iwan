@@ -1,0 +1,10 @@
+@font-face {
+    font-family: 'CustomFont'; /* Nama font yang kamu tentukan */
+    src: url('./fonts/DancingScript-VariableFont_wght.ttf') format('truetype'); /* Path ke file font */
+}
+
+@font-face {
+    font-family: 'Lora'; /* Nama font yang kamu tentukan */
+    src: url('./lora/Lora-VariableFont_wght.ttf') format('truetype'); /* Path ke file font */
+}
+

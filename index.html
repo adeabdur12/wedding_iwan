@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Wedding Iwan</title>
+
+    <!-- Custom fonts for this template-->
+    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet">
+
+    <link href="css/sb-admin-2.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body id="page-top" style="background-image: url('img/prewed2.jpg');background-size: cover;">
+    <div style="position: relative;">
+        <div style="height: 100vh;width: 100%;background-color: rgba(65, 48, 48, 0.4);" class="">
+            <div style="position: absolute;width: 100% ;height:100%;" class="text-white d-flex align-items-center">
+                <div class="row row-cols-2 col-12" style="height: 100%;">
+                    <div class="text-center pt-5">
+                        <h1 class="mb-0" style="font-family: CustomFont;font-size: 120px;">Welcome</h1>
+                        <h3 style="letter-spacing: 7px;font-family: Lora;">TO OUR WEDDING</h3>
+                        <h1 style="font-family: CustomFont;font-size: 100px;" class="mt-5">Iwan SAC</h1>
+                        <h2 style="font-family: CustomFont;font-size: 70px;">&</h2>
+                        <h1 style="font-family: CustomFont;font-size: 100px;">Fulan</h1>
+                        <div class="mt-5">
+                            <h3 style="font-family: Lora;font-size: 30px;">21 Januari 2025</h3>
+                            <h3 style="font-family: Lora;font-size: 20px;font-weight: 50;">JL.Sipon - Tangerang</h3>
+                        </div>
+                    </div>
+                    <div class="text-center d-flex align-items-center justify-content-center pt-3">
+                        <div>
+                            <h2 style="font-weight: bold;" class="fw-bold mt-5">Tempelkan Kartu Undangan Anda</h2>
+                            <img src="img/stream2.svg" style="margin-top: -80px;" width="400" alt="">
+                            <div style="margin-top: -50px;">
+                                <input id="inputTamu" autofocus class="bg-transparent  border-none" />
+                                <p>Supported Event By</p>
+                                <div class="row col-12 row-cols-3">
+                                    <div>
+                                        <img src="img/rider.jpg" width="80" alt="">
+                                    </div>
+                                    <div>
+                                        <img src="img/rider2.jpg" width="80" alt="">
+                                    </div>
+                                    <div>
+                                        <img src="img/rider3.jpg" width="80" alt="">
+                                    </div>
+                                </div>
+                                <br>
+                                <div class=" row gap-2  justify-content-between">
+                                    <div class="col-6">
+                                        <h6 class="">Bersponsor</h6>
+                                        <div class="" style="height: 9rem;">
+                                            <video autoplay muted loop width="100%" height="100%"
+                                                style="object-fit: cover;" class=" rounded border border-white border-2"
+                                                src="img/sinematic_rider.mp4"></video>
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <h6 class="">Bersponsor</h6>
+                                        <div class="" style="height: 9rem;">
+                                            <video autoplay muted loop width="100%" height="100%"
+                                                style="object-fit: cover;" class=" rounded border border-white border-2"
+                                                src="img/sinematic_rider.mp4"></video>
+                                        </div>
+                                    </div>
+                                </div>
+                                <br>
+                                <p>Copyright <i class="fas fa-copyright"></i> 2025 Iwan SAC</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <h1 id="text_welcome"></h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+    <script src="js/sb-admin-2.min.js"></script>
+
+    <script>
+        const dbName = 'userDB';
+        let db;
+
+        const request = indexedDB.open(dbName, 2);
+
+        request.onsuccess = function (event) {
+            db = event.target.result;
+        };
+        
+        setTimeout(() => {
+            const transaction = db.transaction(['users'], 'readonly'); // Gunakan transaksi readonly untuk membaca data
+            const store = transaction.objectStore('users');
+            const getData = store.getAll()
+            let allData = []
+            getData.onsuccess = (e) => {
+                allData = e.target.result
+            }
+            let inputTamu = document.getElementById('inputTamu')
+            let input = null
+            inputTamu.addEventListener('input', (e) => {
+                input = e.target.value
+                $('#exampleModal').modal('show')
+            })
+
+            $('#exampleModal').on('show.bs.modal', function (event) {
+                setTimeout(() => {
+                    let text_welcome = document.getElementById('text_welcome')
+                    let cariData = allData.find(val => val.number == input)
+                    if(cariData){
+                        text_welcome.textContent = `Selamat Datang ${cariData.name}`
+                    }
+                }, 300);
+                setTimeout(() => {
+                    $('#exampleModal').modal('hide')
+                }, 3000);
+                setTimeout(() => {
+                    window.location.reload()
+                }, 3500);
+            })
+            function debounce(callback, delay) {
+                console.log(delay, 'lala')
+                let timer
+                return function () {
+                    clearTimeout(timer)
+                    timer = setTimeout(() => {
+                        callback();
+                    }, delay)
+                }
+            }
+        }, 400);
+    </script>
+
+</body>
+
+</html>
