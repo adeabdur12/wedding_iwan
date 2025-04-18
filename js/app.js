@@ -82,7 +82,7 @@ function renderUsers() {
           <td>${user.address}</td>
           <td>${user.memberType}</td>
           <td>
-            <span class="badge ${user.status == 0 ? 'bg-warning' : 'bg-primary'}">${user.status == 0 ? 'Belum Hadir' : 'Hadir'}</span>
+            <span class="badge text-white ${user.status == 0 ? 'bg-secondary' : 'bg-success'}">${user.status == 0 ? 'Belum Hadir' : 'Hadir'}</span>
           </td>
           <td>
             <div class="d-flex align-items-center justify-content-end">
