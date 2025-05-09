@@ -21,62 +21,38 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 
-<body id="page-top" style="background-image: url('img/prewed2.jpg');background-size: cover;">
+<body id="page-top" style="background-image: url('img/cb1.png');background-size: cover;">
     <div style="position: relative;">
         <div style="height: 100vh;width: 100%;background-color: rgba(65, 48, 48, 0.4);" class="">
             <div style="position: absolute;width: 100% ;height:100%;" class="text-white d-flex align-items-center">
                 <div class="row row-cols-2 col-12" style="height: 100%;">
-                    <div class="text-center pt-5">
+                    <div class="text-center mt-5">
                         <h1 class="mb-0" style="font-family: CustomFont;font-size: 120px;">Welcome</h1>
                         <h3 style="letter-spacing: 7px;font-family: Lora;">TO OUR WEDDING</h3>
-                        <h1 style="font-family: CustomFont;font-size: 100px;" class="mt-5">Iwan SAC</h1>
+                        <h1 style="font-family: CustomFont;font-size: 100px;" class="mt-5">Kurniawan</h1>
                         <h2 style="font-family: CustomFont;font-size: 70px;">&</h2>
-                        <h1 style="font-family: CustomFont;font-size: 100px;">Fulan</h1>
+                        <h1 style="font-family: CustomFont;font-size: 100px;">Firlana</h1>
                         <div class="mt-5">
-                            <h3 style="font-family: Lora;font-size: 30px;">21 Januari 2025</h3>
-                            <h3 style="font-family: Lora;font-size: 20px;font-weight: 50;">JL.Sipon - Tangerang</h3>
+                            <h3 style="font-family: Lora;font-size: 30px;">10 Mei 2025</h3>
+                            <h3 style="font-family: Lora;font-size: 20px;font-weight: 50;">Gendung Graha Faletehan</h3>
                         </div>
                     </div>
-                    <div class="text-center d-flex align-items-center justify-content-center pt-3">
-                        <div>
-                            <h2 style="font-weight: bold;" class="fw-bold mt-5">Tempelkan Kartu Undangan Anda</h2>
+                    <div class="text-center d-flex align-items-center justify-content-center">
+                        <div class="text-center">
+                            <h2 style="font-weight: bold;" class="fw-bold">Tempelkan Kartu Undangan Anda</h2>
                             <img src="img/stream2.svg" style="margin-top: -80px;" width="400" alt="">
                             <div style="margin-top: -50px;">
-                                <input id="inputTamu" autofocus style="opacity: 0;"
+                                <input id="inputTamu" type="text" autofocus style="opacity: 0;"
                                     class="bg-transparent border-none" />
                                 <p>Supported Event By</p>
-                                <div class="row col-12 row-cols-3">
-                                    <div>
-                                        <img src="img/rider.jpg" width="80" alt="">
-                                    </div>
-                                    <div>
-                                        <img src="img/rider2.jpg" width="80" alt="">
-                                    </div>
-                                    <div>
-                                        <img src="img/rider3.jpg" width="80" alt="">
+                                <p>Copyright <i class="fas fa-copyright"></i> D'UNDANG BY GARASIMEDIA.ID</p>
+                                <div class=" mx-auto">
+                                    <div class="" style="height: 9rem;">
+                                        <video autoplay muted loop width="100%" height="340" style="object-fit: cover;"
+                                            class=" rounded border border-white border-2"
+                                            src="img/sinematic_rider.mp4"></video>
                                     </div>
                                 </div>
-                                <br>
-                                <div class=" row gap-2  justify-content-between">
-                                    <div class="col-6">
-                                        <h6 class="">Bersponsor</h6>
-                                        <div class="" style="height: 9rem;">
-                                            <video autoplay muted loop width="100%" height="100%"
-                                                style="object-fit: cover;" class=" rounded border border-white border-2"
-                                                src="img/sinematic_rider.mp4"></video>
-                                        </div>
-                                    </div>
-                                    <div class="col-6">
-                                        <h6 class="">Bersponsor</h6>
-                                        <div class="" style="height: 9rem;">
-                                            <video autoplay muted loop width="100%" height="100%"
-                                                style="object-fit: cover;" class=" rounded border border-white border-2"
-                                                src="img/sinematic_rider.mp4"></video>
-                                        </div>
-                                    </div>
-                                </div>
-                                <br>
-                                <p>Copyright <i class="fas fa-copyright"></i> 2025 Iwan SAC</p>
                             </div>
                         </div>
                     </div>
@@ -135,16 +111,12 @@
                 $('#exampleModal').modal('show')
             })
 
-
-
-
-
             $('#exampleModal').on('show.bs.modal', function (event) {
                 const audio = new Audio('sound/notify.wav');
                 audio.play()
                 let text_welcome = document.getElementById('text_welcome')
                 setTimeout(() => {
-                    let cariData = allData.find(val => val.number == input)
+                    let cariData = allData.find(val => val.number.toLowerCase().includes(input.toLowerCase()))
                     if (cariData) {
                         text_welcome.textContent = `${cariData.name}`
                         editUser(cariData.id)
@@ -152,21 +124,13 @@
                 }, 200);
                 setTimeout(() => {
                     $('#exampleModal').modal('hide')
+                    inputTamu.value = ''
                 }, 4000);
                 setTimeout(() => {
-                    window.location.reload()
+
+                    inputTamu.focus()
                 }, 4500);
             })
-            function debounce(callback, delay) {
-                console.log(delay, 'lala')
-                let timer
-                return function () {
-                    clearTimeout(timer)
-                    timer = setTimeout(() => {
-                        callback();
-                    }, delay)
-                }
-            }
         }, 400);
 
         function editUser(id) {
